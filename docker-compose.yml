@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  postgres: 
+    image: postgres
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    restart: always
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: "."
+      target: "dev"
+    depends_on:
+      - postgres
+    container_name: 'Leonardotest'
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      PG_HOST: postgres
+      PG_USER: test
+      JWT_TOKEN_SECRET: sample-jwt-secret
+      PG_PASSWORD: test
+      PG_DATABASE: test
+      REDIS_URL: redis://redis:6379
+      PORT: 3000
+volumes:
+  db-data:
