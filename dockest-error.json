@@ -1,0 +1,11 @@
+{
+  "errorPayload": {
+    "trap": "unhandledRejection",
+    "reason": {
+      "payload": {},
+      "name": "DockestError"
+    },
+    "promise": {}
+  },
+  "timestamp": "2023-09-02T22:30:35.227Z"
+}
