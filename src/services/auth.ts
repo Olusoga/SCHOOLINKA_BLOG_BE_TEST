@@ -1,6 +1,5 @@
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
-
 import { ErrorCodes } from 'src/domain/errors';
 import { StandardError } from 'src/libs/standard-error';
 import { logger } from 'src/libs/logger';
